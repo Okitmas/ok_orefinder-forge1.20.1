@@ -1,0 +1,18 @@
+{
+  "item.ok_orefinder.diamond_ore_finder": "Diamond Ore Finder",
+  "itemGroup.ore_finder_tab": "Ok's Ore Finder",
+  "tip.ok_orefinder.found": "Found %s at x: %d, y: %d, z: %d",
+  "tip.ok_orefinder.notfound": "Not found for target ores",
+  "tip.ok_orefinder.searching": "Ore Finder is searching, don't use it so frequently",
+  "tooltip.ok_orefinder.description": "Aim a block and click use key to search.\nif hold shift, searching downwards.\nor else searching neighboring blocks.",
+  "tooltip.ok_orefinder.holdshift": "Hold Shift for detail.",
+  "tip.ok_orefinder.guideRot": "Found %s at %d %s, %d %s, %d %s.",
+  "tip.ok_orefinder.belowHint": "below",
+  "tip.ok_orefinder.aboveHint": "above",
+  "tip.ok_orefinder.frontHint": "front",
+  "tip.ok_orefinder.behindHint": "behind",
+  "tip.ok_orefinder.leftHint": "left",
+  "tip.ok_orefinder.rightHint": "right",
+  "item.ok_orefinder.iron_ore_finder": "Iron Ore Finder",
+  "item.ok_orefinder.netherite_ore_finder": "Netherite Ore Finder"
+}

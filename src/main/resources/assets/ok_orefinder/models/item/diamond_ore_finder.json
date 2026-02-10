@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ok_orefinder:item/diamond_ore_finder"
+  }
+}

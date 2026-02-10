@@ -1,0 +1,18 @@
+{
+  "item.ok_orefinder.diamond_ore_finder": "钻石探矿器",
+  "itemGroup.ore_finder_tab": "Ok的探矿器",
+  "tip.ok_orefinder.found": "发现%s位于x: %d, y: %d, z: %d",
+  "tip.ok_orefinder.notfound": "未发现目标矿物",
+  "tip.ok_orefinder.searching": "探矿器正在搜寻，请不要频繁使用",
+  "tooltip.ok_orefinder.description": "对准方块并按下使用键探矿\n如果按住shift会向下找\n否则按邻近的方块寻找",
+  "tooltip.ok_orefinder.holdshift": "按Shift查看详细",
+  "tip.ok_orefinder.guideRot": "发现%s位于%d%s, %d%s, %d%s",
+  "tip.ok_orefinder.belowHint": "格之下",
+  "tip.ok_orefinder.aboveHint": "格之上",
+  "tip.ok_orefinder.frontHint": "格之前",
+  "tip.ok_orefinder.behindHint": "格之后",
+  "tip.ok_orefinder.leftHint": "格左边",
+  "tip.ok_orefinder.rightHint": "格右边",
+  "item.ok_orefinder.iron_ore_finder": "铁探矿器",
+  "item.ok_orefinder.netherite_ore_finder": "下界合金探矿器"
+}
