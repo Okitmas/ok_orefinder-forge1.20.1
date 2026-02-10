@@ -11,6 +11,7 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Ok_OreFinder.MOD_ID);
 
+    @SuppressWarnings("unused")
     public static final RegistryObject<CreativeModeTab> MOD_TAB = CREATIVE_MODE_TABS.register("ore_finder_tab", () -> CreativeModeTab.builder()
             .icon(() -> ModItems.DIAMOND_ORE_FINDER.get().getDefaultInstance())
             .title(Component.translatable("itemGroup.ore_finder_tab"))
