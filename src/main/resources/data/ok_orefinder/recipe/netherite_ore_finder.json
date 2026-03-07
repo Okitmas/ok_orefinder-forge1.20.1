@@ -7,7 +7,7 @@
     "item": "ok_orefinder:diamond_ore_finder"
   },
   "result": {
-    "item": "ok_orefinder:netherite_ore_finder"
+    "id": "ok_orefinder:netherite_ore_finder"
   },
   "template": {
     "item": "minecraft:netherite_upgrade_smithing_template"

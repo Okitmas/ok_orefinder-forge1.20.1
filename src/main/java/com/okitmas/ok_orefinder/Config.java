@@ -2,48 +2,48 @@ package com.okitmas.ok_orefinder;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.fml.common.Mod;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.okitmas.ok_orefinder.Ok_OreFinder.OK_MOD_LOGGER;
-
 // Demonstrates to use Forge's config APIs
-@Mod.EventBusSubscriber(modid = Ok_OreFinder.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config
 {
-    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    public static final ForgeConfigSpec.IntValue DIAMOND_BFS_DEPTH = BUILDER
+    public static final ModConfigSpec.IntValue DIAMOND_BFS_DEPTH = BUILDER
             .comment("The depth of Broad First Search Method(right click without shift).",
                     "Don't set it too large! It will make your PC lagging!")
             .defineInRange("bfs_depth_for_diamond", 16, 1, 127);
 
-    public static final ForgeConfigSpec.IntValue SEARCH_COOLDOWN = BUILDER
+    public static final ModConfigSpec.IntValue SEARCH_COOLDOWN = BUILDER
             .comment("The Cooldown of using Ore Finder")
             .defineInRange("search_cooldown",20,20,72000);
 
-    public static final ForgeConfigSpec.IntValue DIAMOND_DOWNWARDS_DEPTH = BUILDER
+    public static final ModConfigSpec.IntValue DIAMOND_DOWNWARDS_DEPTH = BUILDER
             .comment("The depth of downward searching method.(right click with shift)")
             .defineInRange("downwards_depth_for_diamond",64,1,319);
 
-    public static final ForgeConfigSpec.IntValue DOWNWARDS_LAYER_SIZE = BUILDER
+    public static final ModConfigSpec.IntValue DOWNWARDS_LAYER_SIZE = BUILDER
             .comment("The size(Manhattan Distance) of each layers in downward searching method(right click with shift).")
             .defineInRange("downwards_layer_size",8,1,24);
 
     // a list of strings that are treated as resource locations for blocks
-    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> DIAMOND_TARGET_ORES = BUILDER
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> DIAMOND_TARGET_ORES = BUILDER
             .comment("Diamond Ore Finder will search for these blocks(ores).")
             .defineList("target_ores_for_diamond", () -> List.of("minecraft:diamond_ore",
                             "minecraft:deepslate_diamond_ore",
                             "minecraft:ancient_debris"),
                     Config::validateBlocksName);
 
-    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> SKIP_BLOCKS = BUILDER
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> SKIP_BLOCKS = BUILDER
             .comment("Which block should be passed when using Broad First Search Method(right click without shift)")
             .defineList("skip_blocks", () -> List.of("minecraft:air",
                             "minecraft:bedrock",
@@ -51,7 +51,7 @@ public class Config
                             "minecraft:lava"),
                     Config::validateBlocksName);
 
-    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> IRON_TARGET_ORES = BUILDER
+    public static final ModConfigSpec.ConfigValue<List<? extends String>> IRON_TARGET_ORES = BUILDER
             .comment("Iron Ore Finder will search for these blocks(ores).")
             .defineList("target_ores_for_iron", () -> List.of("minecraft:gold_ore",
                             "minecraft:deepslate_gold_ore",
@@ -59,16 +59,16 @@ public class Config
                             "minecraft:deepslate_diamond_ore"),
                     Config::validateBlocksName);
 
-    public static final ForgeConfigSpec.IntValue IRON_BFS_DEPTH = BUILDER
+    public static final ModConfigSpec.IntValue IRON_BFS_DEPTH = BUILDER
             .comment("The depth of Broad First Search Method(right click without shift).",
                     "Don't set it too large! It will make your PC lagging!")
             .defineInRange("bfs_depth_for_iron", 8, 1, 63);
 
-    public static final ForgeConfigSpec.IntValue IRON_DOWNWARDS_DEPTH = BUILDER
+    public static final ModConfigSpec.IntValue IRON_DOWNWARDS_DEPTH = BUILDER
             .comment("The depth of downward searching method.(right click with shift)")
             .defineInRange("downwards_depth_for_iron",32,1,128);
 
-    static final ForgeConfigSpec SPEC = BUILDER.build();
+    static final ModConfigSpec SPEC = BUILDER.build();
 
     private static int diamond_bfs_depth;
     private static int search_cooldown;
@@ -82,7 +82,7 @@ public class Config
 
     private static boolean validateBlocksName(final Object obj)
     {
-        return obj instanceof final String itemName && ForgeRegistries.BLOCKS.containsKey(ResourceLocation.tryParse(itemName));
+        return obj instanceof final String itemName && BuiltInRegistries.BLOCK.containsKey(ResourceLocation.tryParse(itemName));
     }
 
     public static void loadConfig() {
@@ -94,15 +94,15 @@ public class Config
 
         // convert the list of strings into a set of items
         diamond_target_ores = DIAMOND_TARGET_ORES.get().stream()
-                .map(blockName -> ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockName)))
+                .map(blockName -> BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(blockName)))
                 .collect(Collectors.toSet());
 
         skip_blocks = SKIP_BLOCKS.get().stream()
-                .map(blockName -> ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockName)))
+                .map(blockName -> BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(blockName)))
                 .collect(Collectors.toSet());
 
         iron_target_ores = IRON_TARGET_ORES.get().stream()
-                .map(blockName -> ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(blockName)))
+                .map(blockName -> BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(blockName)))
                 .collect(Collectors.toSet());
         iron_bfs_depth = IRON_BFS_DEPTH.get();
         iron_downwards_depth = IRON_DOWNWARDS_DEPTH.get();
