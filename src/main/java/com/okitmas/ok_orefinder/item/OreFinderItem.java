@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -22,7 +23,7 @@ import java.util.Set;
 import static com.okitmas.ok_orefinder.Ok_OreFinder.OK_MOD_LOGGER;
 
 
-public class OreFinderItem extends Item implements Vanishable {
+public class OreFinderItem extends Item {
     @Nullable private BlockPos posCache = null;
     private final ItemLevel itemLevel;
 
@@ -49,7 +50,7 @@ public class OreFinderItem extends Item implements Vanishable {
      * @param pIsAdvanced a flag
      */
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack,pLevel,pTooltipComponents,pIsAdvanced);
         if (Screen.hasShiftDown()) {
             // 显示详细信息
@@ -116,9 +117,7 @@ public class OreFinderItem extends Item implements Vanishable {
 
             serverPlayer.sendSystemMessage(Component.translatable("tip.ok_orefinder.searching"));
 
-            pContext.getItemInHand().hurtAndBreak(1, player,
-                    (pPlayer) -> pPlayer.broadcastBreakEvent(pContext.getHand())
-            );
+            pContext.getItemInHand().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
 
             if (FinderHelper.isExecutorRunning()) {
                 FinderHelper.wrappedSearchingAction(this, clickedPos, level, serverPlayer);

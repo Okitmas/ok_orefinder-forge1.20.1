@@ -6,7 +6,7 @@
       "tag": "minecraft:planks"
     },
     "X": {
-      "item": "minecraft:iron_block"
+      "item": "minecraft:diamond_block"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "#  "
   ],
   "result": {
-    "item": "ok_orefinder:iron_ore_finder"
+    "id": "ok_orefinder:diamond_ore_finder"
   },
   "show_notification": true
 }
